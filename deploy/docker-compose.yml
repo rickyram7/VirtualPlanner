@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  frontend:
+    image: frontend
+    ports:
+      - "80:80"
+  
+  backend:
+    image: backend
+    ports:
+      - "8080:8080"
+
+  database:
+    image: db
+    ports:
+      - "3306:3306"
