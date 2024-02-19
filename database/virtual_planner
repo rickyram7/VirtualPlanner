@@ -20,8 +20,7 @@ db.connect((err) => {
   console.log('Connected to MySQL database');
 });
 
-// Define your API endpoints here
-// For example:
+
 app.get('/events', (req, res) => {
   db.query('SELECT * FROM events', (err, results) => {
     if (err) {
