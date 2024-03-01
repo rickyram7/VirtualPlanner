@@ -3,8 +3,9 @@ body {
     margin-top: 50px;
     justify-content: center;
     background-color: #FFFCFF;
-  }
-  button {
+}
+
+button {
     width: 75px;
     cursor: pointer;
     box-shadow: 0px 0px 2px gray;
@@ -13,38 +14,44 @@ body {
     padding: 5px;
     border-radius: 5px;
     color: white;
-  }
-  
-  #header {
+}
+
+#header {
     padding: 10px;
     color: #d36c6c;
     font-size: 26px;
     font-family: sans-serif;
     display: flex;
     justify-content: space-between;
-  }
-  #header button {
+}
+
+#header button {
     background-color:#92a1d1;
-  }
-  #container {
+}
+
+#container {
     width: 770px;
-  }
-  #weekdays {
+}
+
+#weekdays {
     width: 100%;
     display: flex;
     color: #247BA0;
-  }
-  #weekdays div {
+}
+
+#weekdays div {
     width: 100px;
     padding: 10px;
-  }
-  #calendar {
+}
+
+#calendar {
     width: 100%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-  }
-  .day {
+}
+
+.day {
     width: 100px;
     padding: 10px;
     height: 100px;
@@ -56,15 +63,17 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  .day:hover {
+}
+
+.day:hover {
     background-color: #e8faed;
-  }
-  
-  .day + #currentDay {
+}
+
+.day + #currentDay {
     background-color:#e8f4fa;
-  }
-  .event {
+}
+
+.event {
     font-size: 10px;
     padding: 3px;
     background-color: #58bae4;
@@ -72,13 +81,28 @@ body {
     border-radius: 5px;
     max-height: 55px;
     overflow: hidden;
-  }
-  .padding {
+}
+
+/* Priority-based styling */
+.event.high {
+    background-color: #FF6347; /* Red for high priority */
+}
+
+.event.medium {
+    background-color: #FFD700; /* Yellow for medium priority */
+}
+
+.event.low {
+    background-color: #90EE90; /* Green for low priority */
+}
+
+.padding {
     cursor: default !important;
     background-color: #FFFCFF !important;
     box-shadow: none !important;
-  }
-  #newEventModal, #deleteEventModal {
+}
+
+#newEventModal, #deleteEventModal {
     display: none;
     z-index: 20;
     padding: 25px;
@@ -90,8 +114,9 @@ body {
     left: calc(50% - 175px);
     position: absolute;
     font-family: sans-serif;
-  }
-  #eventTitleInput {
+}
+
+#eventTitleInput {
     padding: 10px;
     width: 100%;
     box-sizing: border-box;
@@ -100,20 +125,25 @@ body {
     outline: none;
     border: none;
     box-shadow: 0px 0px 3px gray;
-  }
-  #eventTitleInput.error {
+}
+
+#eventTitleInput.error {
     border: 2px solid red;
-  }
-  #cancelButton, #deleteButton {
+}
+
+#cancelButton, #deleteButton {
     background-color: #d36c6c;
-  }
-  #saveButton, #closeButton {
+}
+
+#saveButton, #closeButton {
     background-color: #92a1d1;
-  }
-  #eventText {
+}
+
+#eventText {
     font-size: 14px;
-  }
-  #modalBackDrop {
+}
+
+#modalBackDrop {
     display: none;
     top: 0px;
     left: 0px;
@@ -122,4 +152,4 @@ body {
     height: 100vh;
     position: absolute;
     background-color: rgba(0,0,0,0.8);
-  }
+}

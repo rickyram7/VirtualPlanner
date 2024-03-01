@@ -7,6 +7,8 @@ const newEventModal = document.getElementById('newEventModal');
 const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
+const prioritySelect = document.getElementById('prioritySelect'); // Added
+
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 function openModal(date) {
@@ -68,6 +70,7 @@ function load() {
       if (eventForDay) {
         const eventDiv = document.createElement('div');
         eventDiv.classList.add('event');
+        eventDiv.classList.add(eventForDay.priority); // Added
         eventDiv.innerText = eventForDay.title;
         daySquare.appendChild(eventDiv);
       }
@@ -87,6 +90,7 @@ function closeModal() {
   deleteEventModal.style.display = 'none';
   backDrop.style.display = 'none';
   eventTitleInput.value = '';
+  prioritySelect.value = 'high'; // Reset priority select
   clicked = null;
   load();
 }
@@ -98,6 +102,7 @@ function saveEvent() {
     events.push({
       date: clicked,
       title: eventTitleInput.value,
+      priority: prioritySelect.value // Capture priority level
     });
 
     localStorage.setItem('events', JSON.stringify(events));
