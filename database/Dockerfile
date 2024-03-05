@@ -2,7 +2,7 @@
 FROM mysql:latest
 
 # Set environment variables for MySQL root password and database name
-ENV MYSQL_ROOT_PASSWORD=hR$2Pw!9X&8sLq
+ENV MYSQL_ROOT_PASSWORD=password
 ENV MYSQL_DATABASE=virtual_planner
 
 # Expose the port MySQL is running on (default is 3306)

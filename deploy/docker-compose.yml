@@ -1,17 +1,29 @@
-version: "2"
+version: "3.8"
 
 services:
   frontend:
+    container_name: VirtualPlannerFrontend
     image: frontend
+    build: ../frontend
     ports:
       - "80:80"
-  
-  backend:
-    image: backend
-    ports:
-      - "8080:8080"
+
 
   database:
+    container_name: VirtualPlannerDatabase
     image: db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: virtual_planner
+    build: ../database
     ports:
       - "3306:3306"
+        
+  backend:
+    container_name: VirtualPlannerBackend
+    image: backend
+    build: ../backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database

@@ -22,5 +22,5 @@ backend:
 	cd ../backend; docker build -t backend .
 
 db:
-	cd ../db; docker build -t db .
+	cd ../database; docker build -t db .
 

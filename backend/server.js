@@ -1,24 +1,52 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const app = express();
 
 // MySQL database configuration
-const db = mysql.createConnection({
-  host: 'database',
+const dbConfig = {
+  host: 'VirtualPlannerDatabase',
   user: 'root',
-  password: 'hR$2Pw!9X&8sLq',
+  password: 'password',
   database: 'virtual_planner',
-});
+};
 
-// Connect to the database
-db.connect((err) => {
-  if (err) {
-    console.error('Error connecting to MySQL database:', err);
-    return;
-  }
-  console.log('Connected to MySQL database');
-});
+// Function to connect to the database with retry
+function connectWithRetry(dbConfig, maxAttempts = 5, attempt = 1) {
+  const db = mysql.createConnection(dbConfig);
+
+  db.connect(err => {
+    if (err) {
+      console.error(`Error connecting to MySQL database: ${err}`);
+      
+      if (attempt < maxAttempts) {
+        console.log(`Attempting to reconnect to the database... Attempt ${attempt} of ${maxAttempts}`);
+        
+        // Wait for 5 seconds before retrying
+        setTimeout(() => connectWithRetry(dbConfig, maxAttempts, attempt + 1), 5000);
+      } else {
+        console.error('Failed to connect to the database after several attempts.');
+      }
+      
+      return;
+    }
+
+    console.log('Connected to MySQL database');
+  });
+
+  // Handle database errors after initial connection
+  db.on('error', err => {
+    console.error('Database error', err);
+
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+      console.log('Re-connecting lost database connection...');
+      connectWithRetry(dbConfig);
+    }
+  });
+}
+
+// Initiate connection
+connectWithRetry(dbConfig);
 
 // Middleware to parse JSON requests
 app.use(express.json());
