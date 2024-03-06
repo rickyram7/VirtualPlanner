@@ -10,17 +10,17 @@ runFE:
 	$(MAKE) frontend
 
 frontendbuild:
-	cd ../frontend; npm run build
+	cd .\frontend\; npm run build
 
 backendbuild:
-	cd ../backend; javac 
+	cd .\backend\; javac 
 
 frontend:
-	cd ../frontend; docker build -t frontend .
+	cd .\frontend\; docker build -t frontend .
 
 backend:
-	cd ../backend; docker build -t backend .
+	cd .\backend\; docker build -t backend .
 
 db:
-	cd ../database; docker build -t db .
+	cd .\db\; docker build -t db .
 
