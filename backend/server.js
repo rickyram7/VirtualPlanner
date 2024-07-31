@@ -85,3 +85,19 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// add the tables to the database
+db.query(`
+  CREATE TABLE IF NOT EXISTS events (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    priority INT NOT NULL
+  )
+`, (err, result) => {
+  if (err) {
+    console.error('Error creating MySQL table:', err);
+    return;
+  }
+  console.log('Table created successfully');
+});
